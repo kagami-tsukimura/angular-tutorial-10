@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MEMBERS } from '../mock-members';
 import { Member } from './../member';
 
 @Component({
@@ -8,11 +7,7 @@ import { Member } from './../member';
   styleUrls: ['./members.component.css'],
 })
 export class MembersComponent implements OnInit {
-  members = MEMBERS;
-  member: Member = {
-    id: 1,
-    name: 'Kagami Tsukimura',
-  };
+  members: Member[];
 
   selectedMember: Member;
 
