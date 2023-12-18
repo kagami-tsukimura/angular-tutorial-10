@@ -23,6 +23,7 @@ export class MembersComponent implements OnInit {
     this.selectedMember = member;
   }
 
+  // RxJs
   // Observable: 非同期処理
   getMembers(): void {
     this.membersService
