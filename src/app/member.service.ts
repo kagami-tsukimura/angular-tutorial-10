@@ -14,7 +14,7 @@ export class MemberService {
     return of(MEMBERS);
   }
 
-  // // asyncの記述
+  // // async awaitの非同期処理
   // async getMembers(): Promise<Member[]> {
   //   return await MEMBERS;
   // }

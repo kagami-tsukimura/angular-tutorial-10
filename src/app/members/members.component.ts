@@ -30,7 +30,7 @@ export class MembersComponent implements OnInit {
       .subscribe((members) => (this.members = members));
   }
 
-  // // asyncの記述
+  // // async awaitの非同期処理
   // async getMembers(): Promise<void> {
   //   this.members = await this.membersService.getMembers();
   // }
