@@ -12,4 +12,7 @@ export class MemberDetailComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  chooseEmployeedesc: string =
+    'Details of the selected employee are displayed here!';
 }
