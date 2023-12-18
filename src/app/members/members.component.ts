@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MemberService } from '../member.service';
 import { Member } from './../member';
 
 @Component({
@@ -11,11 +12,17 @@ export class MembersComponent implements OnInit {
 
   selectedMember: Member;
 
-  constructor() {}
+  constructor(private membersService: MemberService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getMembers();
+  }
 
   onClick(member: Member): void {
     this.selectedMember = member;
+  }
+
+  getMembers(): void {
+    this.members = this.membersService.getMembers();
   }
 }
