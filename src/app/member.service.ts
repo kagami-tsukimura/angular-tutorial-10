@@ -8,7 +8,7 @@ import { MEMBERS } from './mock-members';
 export class MemberService {
   constructor() {}
 
-  getMembers(): Member[] {
-    return MEMBERS;
+  async getMembers(): Promise<Member[]> {
+    return await MEMBERS;
   }
 }

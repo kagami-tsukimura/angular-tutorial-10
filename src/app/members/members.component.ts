@@ -23,7 +23,7 @@ export class MembersComponent implements OnInit {
     this.selectedMember = member;
   }
 
-  getMembers(): void {
-    this.members = this.membersService.getMembers();
+  async getMembers(): Promise<void> {
+    this.members = await this.membersService.getMembers();
   }
 }
