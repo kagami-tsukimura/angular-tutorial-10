@@ -1,0 +1,14 @@
+<div *ngIf="member; else emptyContent">
+  <h2>{{ member.name }}</h2>
+  <div><span>id: </span>{{ member.id }}</div>
+  <div>
+    <label>name: </label
+    ><input type="text" [(ngModel)]="member.name" placeholder="name" />
+  </div>
+</div>
+
+<ng-template #emptyContent>
+  <div>
+    <h3>{{ chooseEmployeedesc }}</h3>
+  </div>
+</ng-template>

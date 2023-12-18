@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MEMBERS } from '../mock-members';
+import { MemberService } from '../member.service';
 import { Member } from './../member';
 
 @Component({
@@ -8,19 +8,22 @@ import { Member } from './../member';
   styleUrls: ['./members.component.css'],
 })
 export class MembersComponent implements OnInit {
-  members = MEMBERS;
-  member: Member = {
-    id: 1,
-    name: 'Kagami Tsukimura',
-  };
+  members: Member[];
 
   selectedMember: Member;
 
-  constructor() {}
+  constructor(private membersService: MemberService) {}
 
-  ngOnInit(): void {}
+  // 初期表示時: Employeesを表示
+  ngOnInit(): void {
+    this.getMembers();
+  }
 
   onClick(member: Member): void {
     this.selectedMember = member;
+  }
+
+  getMembers(): void {
+    this.members = this.membersService.getMembers();
   }
 }
