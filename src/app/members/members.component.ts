@@ -14,6 +14,7 @@ export class MembersComponent implements OnInit {
 
   constructor(private membersService: MemberService) {}
 
+  // 初期表示時: Employeesを表示
   ngOnInit(): void {
     this.getMembers();
   }
