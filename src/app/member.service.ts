@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Member } from './member';
+import { MEMBERS } from './mock-members';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MemberService {
+  constructor() {}
 
-  constructor() { }
+  getMembers(): Member[] {
+    return MEMBERS;
+  }
 }
