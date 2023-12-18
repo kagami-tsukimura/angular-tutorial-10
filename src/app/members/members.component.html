@@ -1,13 +1,15 @@
 <h2>Employees</h2>
 <ul class="members">
-  <li *ngFor="let member of members">
+  <li *ngFor="let member of members" (click)="onClick(member)">
     <span class="badge">{{ member.id }}</span> {{ member.name }}
   </li>
 </ul>
 
-<h2>{{ member.name }}</h2>
-<div><span>id: </span>{{ member.id }}</div>
-<div>
-  <label>name: </label
-  ><input type="text" [(ngModel)]="member.name" placeholder="name" />
+<div *ngIf="selectedMember">
+  <h2>{{ selectedMember.name }}</h2>
+  <div><span>id: </span>{{ selectedMember.id }}</div>
+  <div>
+    <label>name: </label
+    ><input type="text" [(ngModel)]="selectedMember.name" placeholder="name" />
+  </div>
 </div>

@@ -14,7 +14,13 @@ export class MembersComponent implements OnInit {
     name: 'Kagami Tsukimura',
   };
 
+  selectedMember: Member;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  onClick(member: Member): void {
+    this.selectedMember = member;
+  }
 }
