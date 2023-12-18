@@ -1,3 +1,25 @@
-<h2>{{ member.name }}</h2>
-<div><span>id: </span>{{ member.id }}</div>
-<div><span>name: </span>{{ member.name }}</div>
+<h2>Employees</h2>
+<ul class="members">
+  <li
+    *ngFor="let member of members"
+    [class.selected]="member === selectedMember"
+    (click)="onClick(member)"
+  >
+    <span class="badge">{{ member.id }}</span> {{ member.name }}
+  </li>
+</ul>
+
+<div *ngIf="selectedMember; else emptyContent">
+  <h2>{{ selectedMember.name }}</h2>
+  <div><span>id: </span>{{ selectedMember.id }}</div>
+  <div>
+    <label>name: </label
+    ><input type="text" [(ngModel)]="selectedMember.name" placeholder="name" />
+  </div>
+</div>
+
+<ng-template #emptyContent>
+  <div>
+    <h3>↑Please choose a member↑</h3>
+  </div>
+</ng-template>
