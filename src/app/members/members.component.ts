@@ -23,10 +23,15 @@ export class MembersComponent implements OnInit {
     this.selectedMember = member;
   }
 
+  // Observable: 非同期処理
   getMembers(): void {
-    // Observable
     this.membersService
       .getMembers()
       .subscribe((members) => (this.members = members));
   }
+
+  // // asyncの記述
+  // async getMembers(): Promise<void> {
+  //   this.members = await this.membersService.getMembers();
+  // }
 }
