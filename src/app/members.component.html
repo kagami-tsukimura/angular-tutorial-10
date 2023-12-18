@@ -1,4 +1,4 @@
-<h2>Employees</h2>
+<h2>社員一覧</h2>
 <ul class="members">
   <li *ngFor="let member of members">
     <span class="badge">{{ member.id }}</span> {{ member.name }}
@@ -8,6 +8,7 @@
 <h2>{{ member.name }}</h2>
 <div><span>id: </span>{{ member.id }}</div>
 <div>
-  <label>name: </label
-  ><input type="text" [(ngModel)]="member.name" placeholder="name" />
+  <label>名前:
+    <input type="text" [(ngModel)]="member.name" placeholder="名前">
+  </label>
 </div>
