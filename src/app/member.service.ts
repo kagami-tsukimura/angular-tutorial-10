@@ -21,4 +21,9 @@ export class MemberService {
   // async getMembers(): Promise<Member[]> {
   //   return await MEMBERS;
   // }
+
+  getMember(id: number): Observable<Member> {
+    this.messageService.add(`MemberService: Get Employee(id: ${id}).`);
+    return of(MEMBERS.find((member) => member.id === id));
+  }
 }
