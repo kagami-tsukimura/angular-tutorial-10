@@ -19,6 +19,6 @@ export class DashboardComponent implements OnInit {
   getMembers(): void {
     this.memberService
       .getMembers()
-      .subscribe((members: Member[]) => this.members === members.slice(1, 5));
+      .subscribe((members: Member[]) => (this.members = members.slice(1, 5)));
   }
 }
