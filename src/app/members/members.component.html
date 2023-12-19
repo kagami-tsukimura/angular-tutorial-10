@@ -4,6 +4,7 @@
     *ngFor="let member of members"
     [class.selected]="member === selectedMember"
     (click)="onClick(member)"
+    routerLink="/detail/{{ member.id }}"
   >
     <span class="badge">{{ member.id }}</span> {{ member.name }}
   </li>
