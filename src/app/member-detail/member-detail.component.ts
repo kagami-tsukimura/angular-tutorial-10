@@ -28,4 +28,8 @@ export class MemberDetailComponent implements OnInit {
       .getMember(id)
       .subscribe((member) => (this.member = member));
   }
+
+  goBack(): void {
+    this.location.back();
+  }
 }
