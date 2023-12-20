@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { Member } from './member';
 import { MessageService } from './message.service';
 import { MEMBERS } from './mock-members';
@@ -19,8 +20,10 @@ export class MemberService {
   // RxJs
   // Observable: 非同期処理
   getMembers(): Observable<Member[]> {
-    this.messageService.add('MemberService: Get Employees.');
-    return this.http.get<Member[]>(this.membersUrl);
+    return this.http.get<Member[]>(this.membersUrl).pipe(
+      tap((members) => this.log('MemberService: Get Employees.')),
+      catchError(this.handleError<Member[]>('getMembers', []))
+    );
   }
 
   // // async awaitの非同期処理
@@ -35,5 +38,14 @@ export class MemberService {
 
   private log(message: string) {
     this.messageService.add(`MemberService: ${message}`);
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      this.log(`${operation} Failed: ${error.message}`);
+
+      return of(result as T);
+    };
   }
 }
