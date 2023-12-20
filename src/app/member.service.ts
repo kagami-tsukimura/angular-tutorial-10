@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Member } from './member';
 import { MessageService } from './message.service';
-import { MEMBERS } from './mock-members';
 
 @Injectable({
   providedIn: 'root',
@@ -32,8 +31,11 @@ export class MemberService {
   // }
 
   getMember(id: number): Observable<Member> {
-    this.messageService.add(`MemberService: Get Employee(id: ${id}).`);
-    return of(MEMBERS.find((member) => member.id === id));
+    const url = `${this.membersUrl}/${id}`;
+    return this.http.get<Member>(url).pipe(
+      tap((_) => this.log(`MemberService: Get Employee(id: ${id}).`)),
+      catchError(this.handleError<Member>(`getMember id=${id}`))
+    );
   }
 
   private log(message: string) {
