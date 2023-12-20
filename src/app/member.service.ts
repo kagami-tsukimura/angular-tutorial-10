@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Member } from './member';
@@ -8,13 +9,18 @@ import { MEMBERS } from './mock-members';
   providedIn: 'root',
 })
 export class MemberService {
-  constructor(private messageService: MessageService) {}
+  private membersUrl = 'api/members';
+
+  constructor(
+    private messageService: MessageService,
+    private http: HttpClient
+  ) {}
 
   // RxJs
   // Observable: 非同期処理
   getMembers(): Observable<Member[]> {
     this.messageService.add('MemberService: Get Employees.');
-    return of(MEMBERS);
+    return this.http.get<Member[]>(this.membersUrl);
   }
 
   // // async awaitの非同期処理
@@ -25,5 +31,9 @@ export class MemberService {
   getMember(id: number): Observable<Member> {
     this.messageService.add(`MemberService: Get Employee(id: ${id}).`);
     return of(MEMBERS.find((member) => member.id === id));
+  }
+
+  private log(message: string) {
+    this.messageService.add(`MemberService: ${message}`);
   }
 }
