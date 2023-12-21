@@ -53,9 +53,22 @@ export class MemberService {
       .post<Member>(this.membersUrl, member, this.httpOptions)
       .pipe(
         tap((newMember) =>
-          this.log(`MemberService: Add Employee id=${newMember.id}`)
+          this.log(`MemberService: Add Employee(id=${newMember.id}).`)
         ),
         catchError(this.handleError<Member>('addMember'))
+      );
+  }
+
+  deleteMember(member: Member | number): Observable<Member> {
+    const id = typeof member === 'number' ? member : member.id;
+    const url = `${this.membersUrl}/${id}`;
+    return this.http
+      .delete<Member>(this.membersUrl, this.httpOptions)
+      .pipe(
+        tap(
+          (_) => this.log(`MemberService: Delete Employee(id: ${id}).`),
+          catchError(this.handleError<Member>('deleteMember'))
+        )
       );
   }
 
