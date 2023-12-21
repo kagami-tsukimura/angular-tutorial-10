@@ -11,6 +11,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 import { MembersComponent } from './members/members.component';
 import { MessagesComponent } from './messages/messages.component';
+import { MemberSearchComponent } from './member-search/member-search.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MessagesComponent } from './messages/messages.component';
     MemberDetailComponent,
     MessagesComponent,
     DashboardComponent,
+    MemberSearchComponent,
   ],
   imports: [
     BrowserModule,

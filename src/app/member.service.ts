@@ -72,6 +72,23 @@ export class MemberService {
       );
   }
 
+  searchMembers(term: string): Observable<Member[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http
+      .get<Member[]>(`${this.membersUrl}/?name=${term}`)
+      .pipe(
+        tap(
+          (_) =>
+            this.log(
+              `MemberService: Found a matching Employee(word: ${term}).`
+            ),
+          catchError(this.handleError<Member[]>('searchMembers', []))
+        )
+      );
+  }
+
   private log(message: string) {
     this.messageService.add(`MemberService: ${message}`);
   }
