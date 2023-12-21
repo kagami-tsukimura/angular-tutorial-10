@@ -41,4 +41,11 @@ export class MembersComponent implements OnInit {
       .addMember({ name } as Member)
       .subscribe((member) => this.members.push(member));
   }
+
+  delete(member: Member): void {
+    this.members = this.members.filter(
+      (selectedMember) => selectedMember !== member
+    );
+    this.memberService.deleteMember(member).subscribe();
+  }
 }
