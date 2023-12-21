@@ -26,7 +26,7 @@ export class MemberSearchComponent implements OnInit {
       debounceTime(WAIT_TIME),
       // 直前と同じデータの場合は処理を終了。
       distinctUntilChanged(),
-      // 検索キーワードを受け取り、新しいObservableを返す。
+      // 検索キーワードを受け取る度、新しいObservableを返す。
       switchMap((term: string) => this.memberService.searchMembers(term))
     );
   }
