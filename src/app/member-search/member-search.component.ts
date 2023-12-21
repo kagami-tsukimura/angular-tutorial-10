@@ -20,9 +20,13 @@ export class MemberSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const WAIT_TIME: number = 300;
     this.members$ = this.searchTerms.pipe(
-      debounceTime(300),
+      // キーボード入力後、WAIT_TIME(msec)待って次の処理。
+      debounceTime(WAIT_TIME),
+      // 直前と同じデータの場合は処理を終了。
       distinctUntilChanged(),
+      // 検索キーワードを受け取り、新しいObservableを返す。
       switchMap((term: string) => this.memberService.searchMembers(term))
     );
   }
