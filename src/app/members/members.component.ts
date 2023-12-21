@@ -12,7 +12,7 @@ export class MembersComponent implements OnInit {
 
   selectedMember: Member;
 
-  constructor(private membersService: MemberService) {}
+  constructor(private memberService: MemberService) {}
 
   // 初期表示時: Employeesを表示
   ngOnInit(): void {
@@ -22,13 +22,23 @@ export class MembersComponent implements OnInit {
   // RxJs
   // Observable: 非同期処理
   getMembers(): void {
-    this.membersService
+    this.memberService
       .getMembers()
       .subscribe((members) => (this.members = members));
   }
 
   // // async awaitの非同期処理
   // async getMembers(): Promise<void> {
-  //   this.members = await this.membersService.getMembers();
+  //   this.members = await this.memberService.getMembers();
   // }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.memberService
+      .addMember({ name } as Member)
+      .subscribe((member) => this.members.push(member));
+  }
 }
